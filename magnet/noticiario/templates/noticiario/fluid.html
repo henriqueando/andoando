@@ -73,10 +73,22 @@
             <ul class="nav nav-list">
               <li class="nav-header">Canais</li>
                     {% for secao in secoes %}
-                        <li><a href="{% url capa-secao secao=secao %}">{{secao}}</a></li>
+                        {% if secao == secao_atual %}
+                            <li class="active">                        
+                            <a href="{% url capa-secao secao=secao %}"
+                            >{{secao}}</a>
+                            <a href="{% url lista-secao secao=secao %}"
+                            ><span class="badge badge-warning"> ver todas </span></a>
+                            </li>
+
+                        {% else %}
+
+                            <li><a href="{% url capa-secao secao=secao %}"
+                            >{{secao}}</a>
+                            </li>
+                        {% endif %}
                     {% endfor %}                    
               <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>

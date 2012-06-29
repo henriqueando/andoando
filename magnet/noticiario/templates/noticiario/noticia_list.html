@@ -1,0 +1,31 @@
+{%extends "noticiario/fluid.html" %}
+
+{% block conteudo %}
+
+    <h1>Últimas Notícias</h1>
+
+    <dl>
+        {% for noticia in object_list %}
+
+            <dt><span class="label label-info">{{noticia.secao}}</span> {{noticia.titulo}}</dt>
+            <dd>{{noticia.lead}}</dd>
+            <br />
+    
+            {% if forloop.last %}
+            <br />
+            <ul class="pager">
+                {% if page_obj.has_previous %}
+                <a href="{% url lista-secao secao=noticia.secao %}?page={{page_obj.previous_page_number}}">&lt;&lt;&lt; Anterior</a>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                <a href="{% url lista-secao secao=noticia.secao %}?page={{page_obj.next_page_number}}">Próxima &gt;&gt;&gt;</a>
+                {% endif %}
+            </ul>
+            {% endif %}        
+        {% endfor %}
+    </dl>    
+
+
+{% endblock conteudo %}
+    
