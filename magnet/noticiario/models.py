@@ -3,6 +3,8 @@
 import datetime
 
 from django.db import models
+from django.core.urlresolvers import reverse
+
 
 NIVEIS_DESTAQUE = [
         (-1, u'-'),
@@ -37,6 +39,9 @@ class Noticia(models.Model):
 
     def __unicode__(self):
         return self.titulo
+
+    def get_absolute_url(self):
+        return reverse('noticia-detalhe', kwargs={'pk': self.pk})
 
     def lead(self):
         if self.resumo.strip():

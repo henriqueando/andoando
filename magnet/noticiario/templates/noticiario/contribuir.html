@@ -1,0 +1,19 @@
+{%extends "noticiario/fluid.html" %}
+
+{% block conteudo %}
+
+    <h1>Contribuir notícia</h1>
+
+    <p>Envie sua notícia para nossos editores publicarem após avaliação.</p>
+
+    <form method="post" action="." class="form">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <input type="submit">
+
+    </form>
+
+{% endblock conteudo %}
+    

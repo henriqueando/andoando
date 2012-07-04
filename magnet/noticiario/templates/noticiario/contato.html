@@ -1,0 +1,17 @@
+{%extends "noticiario/fluid.html" %}
+
+{% block conteudo %}
+
+    <h1>Fale conosco</h1>
+
+    <form method="post" action="." class="form">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <input type="submit">
+
+    </form>
+
+{% endblock conteudo %}
+    
