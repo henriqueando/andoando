@@ -1,4 +1,5 @@
 {%extends "noticiario/fluid.html" %}
+{% load bootstrap_toolkit %}
 
 {% block conteudo %}
 
@@ -6,14 +7,17 @@
 
     <p>Envie sua notícia para nossos editores publicarem após avaliação.</p>
 
-    <form method="post" action="." class="form">
-    {% csrf_token %}
+        <form method="post" action="." class="form">
 
-    {{form.as_p}}
+        {% csrf_token %}
 
-    <input type="submit">
+        {{form|as_bootstrap}}
 
-    </form>
+        <div class="actions">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+        </form>
+
 
 {% endblock conteudo %}
     

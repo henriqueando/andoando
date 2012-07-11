@@ -3,8 +3,7 @@ from django.views.generic.edit import FormView, CreateView
 
 from .models import Noticia
 
-from .forms import FormContato
-from .forms import FormNoticia
+from .forms import FormContato, FormNoticia, FormContribNoticia
 
 
 
@@ -51,3 +50,4 @@ class ContatoView(FormView):
 
 class CriarNoticiaView(CreateView):
     model = Noticia
+    form_class = FormContribNoticia
