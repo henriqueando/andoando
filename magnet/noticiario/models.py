@@ -58,7 +58,21 @@ class Noticia(models.Model):
         cursor = connection.cursor()
 
         secoes = cursor.execute("SELECT DISTINCT secao FROM noticiario_noticia")
-        secoes = (t[0] for t in secoes)
+        secoes = sorted(t[0] for t in secoes if t[0])
 
         return secoes
+
+class Link(models.Model):
+    titulo = models.CharField(u'título', max_length=256)
+    url = models.URLField()
+    dt_criacao = models.DateTimeField(u'data de criação',
+        default=datetime.datetime.now, db_index=True)
+    dt_verificacao = models.DateTimeField(u'data de verificação', db_index=True, null=True, blank=True)
+    situacao = models.CharField(u'situacao', max_length=128, blank=True)
+    ativo = models.BooleanField(default=True)
+    noticia = models.ForeignKey(Noticia)    
+
+    def __unicode__(self):
+        return self.titulo
+
 
