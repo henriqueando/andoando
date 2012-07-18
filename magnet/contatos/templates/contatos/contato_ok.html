@@ -1,0 +1,22 @@
+{%extends "noticiario/fluid.html" %}
+{% load bootstrap_toolkit %}
+
+{% block conteudo %}
+
+    <h1>Dados de contato recebidos</h1>
+
+    <br/>
+
+    <table class="table table-bordered">
+
+        {% for campo in form %}
+            <tr>
+                <th>{{campo.label}}</th>
+                <td>{{campo.value}}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock conteudo %}
+    

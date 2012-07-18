@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'noticiario',
     'bootstrap_toolkit',
+    'contatos',
 )
 
 # A sample logging configuration. The only tangible logging
