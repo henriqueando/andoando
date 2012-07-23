@@ -2,7 +2,7 @@ from django.db import models
 
 class Contato(models.Model):
     nome = models.CharField(max_length=128)
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
 
     def __unicode__(self):
         return self.nome

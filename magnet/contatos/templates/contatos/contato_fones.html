@@ -1,0 +1,37 @@
+{%extends "noticiario/fluid.html" %}
+{% load bootstrap_toolkit %}
+
+{% block conteudo %}
+
+    <h1>Cadastro de Contato</h1>
+
+    <form method="post" action="." class="form">
+
+    {% csrf_token %}
+
+    {{ form_contato|as_bootstrap }}
+
+    <div id="forms_fones">
+        {{ forms_fones.management_form }}
+
+        {% for form_fone in forms_fones %}    
+            <div class="form_fone">
+                {{ form_fone|as_bootstrap }}
+            </div>
+        {% endfor %}
+    </div>
+
+        <div class="actions">
+            <button id="ad-fone" type="button" class="btn btn-success">Adicionar Fone</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+
+    <script>
+    
+
+    </script>
+
+    </form>
+
+{% endblock conteudo %}
+    

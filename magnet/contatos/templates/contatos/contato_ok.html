@@ -9,7 +9,7 @@
 
     <table class="table table-bordered">
 
-        {% for campo in form %}
+        {% for campo in form_contato %}
             <tr>
                 <th>{{campo.label}}</th>
                 <td>{{campo.value}}</td>
@@ -17,6 +17,21 @@
         {% endfor %}
 
     </table>
+
+    {% for form_fone in forms_fones %}
+
+    <table class="table table-bordered">
+
+        {% for campo in form_fone %}
+            <tr>
+                <th>{{campo.label}}</th>
+                <td>{{campo.value}}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    {% endfor %}
 
 {% endblock conteudo %}
     
