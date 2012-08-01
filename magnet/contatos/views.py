@@ -1,8 +1,10 @@
 # coding: utf-8
 
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.forms.formsets import formset_factory
-from django.forms.models import inlineformset_factory
+from django.forms.models import inlineformset_factory, modelformset_factory
+from django.core.urlresolvers import reverse
+
 
 from .forms import ContatoSimples, FoneForm, ContatoModelForm, FoneModelForm
 from .models import Contato, Fone
@@ -62,7 +64,7 @@ def contato_fones(request):
 
 
 def contato_fones_com_modelform(request):
-    FonesFormSet = inlineformset_factory(Contato, Fone)
+    FonesFormSet = modelformset_factory(Contato, Fone)
     if request.method == 'POST':
         form_contato = ContatoModelForm(request.POST)        
         if form_contato.is_valid():
@@ -83,4 +85,29 @@ def contato_fones_com_modelform(request):
         'form_contato': form_contato, 'forms_fones': forms_fones})
 
 
+def lista_contatos(request):
+    contatos = Contato.objects.all()
+    return render(request, 'contatos/listagem.html', {'contatos':contatos})
 
+
+def editar_contato(request, id_contato):
+    contato = Contato.objects.get(pk=id_contato)
+    contato = get_object_or_404(Contato, pk= 1)
+
+    FonesFormSet = inlineformset_factory(Contato, Fone)
+    if request.method == "POST":
+        form_contato = ContatoModelForm(request.POST, instance=contato)
+        forms_fones = FonesFormSet(request.POST, instance= contato)
+        if form_contato.is_valid():
+            form_contato.save()
+        if forms_fones.is_valid():
+            forms_fones.save()
+
+            # Do something. Should generally end with a redirect. For example:
+            return HttpResponseRedirect(reverse('lista-contatos'))            
+
+    else:
+        form_contato = ContatoModelForm(instance=contato)
+        forms_fones = FonesFormSet(instance=contato)
+    return render(request, "contatos/contato_editar.html",
+        {'form_contato': form_contato, 'forms_fones': forms_fones})

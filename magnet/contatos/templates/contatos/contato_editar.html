@@ -22,23 +22,9 @@
     </div>
 
         <div class="actions">
-            <button id="ad-fone" type="button" class="btn btn-success">Adicionar Fone</button>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
 
     </form>
 
 {% endblock conteudo %}
-
-{% block js-rodape%}
-    <script>
-        $(document).ready(function()
-            $("#ad-fone").click(
-                function(event){
-                    var form_fone = $(".form_fone:first").clone();
-                    $(form_fone).$("#id_form-0-ddd").attr("id","xxxx");
-                    $(form_fone).appendTo("forms_fones");
-            });
-        });
-    </script>
-{% endblock %}
